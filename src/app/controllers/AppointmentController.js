@@ -58,6 +58,16 @@ class AppointmentController {
     }
 
     /**
+     * Check if provider is not same user
+     */
+
+    if (isProvider.id === req.userId) {
+      return res
+        .status(401)
+        .json({ error: 'Provider cannot mark with itself' });
+    }
+
+    /**
      * Check for past dates
      */
     const hourStart = startOfHour(parseISO(date));
