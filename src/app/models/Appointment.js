@@ -1,4 +1,4 @@
-import { Model, Sequelize } from 'sequelize';
+import Sequelize, { Model } from 'sequelize';
 import { isBefore, subHours } from 'date-fns';
 
 class Appointment extends Model {

@@ -1,5 +1,6 @@
 import { startOfDay, endOfDay, parseISO } from 'date-fns';
 import { Op } from 'sequelize';
+
 import User from '../models/User';
 import Appointment from '../models/Appointment';
 
@@ -23,15 +24,15 @@ class ScheduleController {
         date: {
           [Op.between]: [startOfDay(parsedDate), endOfDay(parsedDate)],
         },
-        include: [
-          {
-            model: User,
-            as: 'user',
-            attributes: ['name'],
-          },
-        ],
-        order: ['date'],
       },
+      include: [
+        {
+          model: User,
+          as: 'user',
+          attributes: ['name'],
+        },
+      ],
+      order: ['date'],
     });
 
     return res.json(appointments);
